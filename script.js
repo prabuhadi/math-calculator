@@ -33,7 +33,7 @@ function handleSymbol(symbol) {
       if (buffer.length === 1) {
         buffer = "0";
       } else {
-        buffer = buffer.toString(0, buffer.length - 1);
+        buffer = buffer.substring(0, buffer.length - 1);
       }
       break;
     case "+":
@@ -72,3 +72,21 @@ function flushOperation(intBuffer) {
     runningTotal /= intBuffer;
   }
 }
+
+function handleNumber(numberString) {
+  if (buffer === "0") {
+    buffer = numberString;
+  } else {
+    buffer += numberString;
+  }
+}
+
+function init() {
+  document
+    .querySelector(".calc-buttons") // problem invalid query selector
+    .addEventListener("click", function (event) {
+      buttonClick(event.target.innerText);
+    });
+}
+
+init();
